@@ -47,4 +47,32 @@ class pitchfork(pre_checks):
                   entry['harvester']['port'],
                   entry['wallet']['port']
                   ] for entry in self.contents]
-        print(tabulate(table, ['Coin', 'Daemon_port', 'Farmer_port', 'FullNode_port', 'Harvester_port', 'Wallet_port'], tablefmt="grid"))
+        self._log.info('Now printing ALL raw data:\n{}'.format(tabulate(table, ['Coin', 'Daemon_port', 'Farmer_port', 'FullNode_port', 'Harvester_port', 'Wallet_port'], tablefmt="grid")))
+
+    def print_port_conflicts(self):
+        conflicts = {}
+
+        for key in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+            conflicts[key] = []
+            generated_subkeys = []
+
+            for coin_1 in self.contents:
+                coin1_nicename = coin_1['nice_name']
+                for coin_2 in self.contents:
+                    coin2_nicename = coin_2['nice_name']
+                    if coin1_nicename != coin2_nicename:
+                        if coin_1[key]['port'] == coin_2[key]['port']:
+                            subkey = '{}_{}'.format(coin1_nicename, coin2_nicename)
+                            subkey_reverse = '{}_{}'.format(coin2_nicename, coin1_nicename)
+                            if subkey_reverse not in generated_subkeys:
+                                conflicts[key].append({'conflict_pair': subkey,
+                                                       'conflict_port': coin_1[key]['port']})
+                                generated_subkeys.append(subkey)
+
+        table = []
+        for key in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+            if len(conflicts[key]) > 0:
+                table+=list([entry['conflict_pair'],
+                              key,
+                              entry['conflict_port']] for entry in conflicts[key])
+        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflicCoins', 'ConflictProcess', 'ConflictPort'], tablefmt="grid")))
