@@ -3,7 +3,7 @@ Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
 Sponsored by https://hddcoin.org/ - Check them out 🙂
 
-![alt text](https://hddcoin.org/wp-content/uploads/2021/09/hdd_coin_logo_website_75.png?raw=true)
+![alt text](hdd_coin_spinning_logo?raw=true)
 
 - Website: https://hddcoin.org/
 - GitHub: https://github.com/HDDcoin-Network/hddcoin-blockchain
@@ -51,7 +51,7 @@ DIRECT USAGE - useful for a quick overview.
 2. Execute RUN_ME.py
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
-## Usage scenario 1
+## Usage scenario 2
 INTERFACE WITH OTHER PYTHON SCRIPTS - useful as a sub-module in your python scripts.
 1. Prepare a list containing the config.yaml file-paths.
 2. Directly import the pitchfork() class from _pitchfork.py
