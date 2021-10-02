@@ -1,7 +1,7 @@
 # pitchFORK-chia-forks-ports-check
 Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
-Sponsored by https://hddcoin.org/ - Check them out !
+Sponsored by https://hddcoin.org/ - Check them out 🙂
 
 ![alt text](https://hddcoin.org/wp-content/uploads/2021/09/hdd_coin_logo_website_75.png?raw=true)
 
@@ -23,7 +23,7 @@ Sponsored by https://hddcoin.org/ - Check them out !
 
 ## Other Contributors
 
--
+![alt text](https://c.tenor.com/FDwYMy302gMAAAAM/tumbleweed-silence.gif?raw=true)
 
 # High level overview
 The tool will parse the configured yaml config files and then scan the data for possible port conflicts.
