@@ -3,6 +3,7 @@ from logging import getLogger
 from concurrent.futures import ThreadPoolExecutor
 from yaml import safe_load
 from traceback import format_exc
+from tabulate import tabulate
 
 class pitchfork(pre_checks):
     def __init__(self):
@@ -37,5 +38,13 @@ class pitchfork(pre_checks):
             for valid_path in override_paths:
                 self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)).result())
 
-    def print_parsed_data(self):
-        print(self.contents)
+    def print_raw_parsed_data(self):
+        table = [[
+                  entry['nice_name'],
+                  entry['daemon']['port'],
+                  entry['farmer']['port'],
+                  entry['full_node']['port'],
+                  entry['harvester']['port'],
+                  entry['wallet']['port']
+                  ] for entry in self.contents]
+        print(tabulate(table, ['Coin', 'Daemon_port', 'Farmer_port', 'FullNode_port', 'Harvester_port', 'Wallet_port'], tablefmt="grid"))
