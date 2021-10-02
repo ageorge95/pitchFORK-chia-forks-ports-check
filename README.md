@@ -12,7 +12,7 @@ Here is an output example from print_raw_parsed_data()
 
 Here is an output example from print_port_conflicts()
 
-![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/print_port_conflicts_snapshot.JPG?raw=true)?raw=true)
+![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/print_port_conflicts_snapshot.JPG?raw=true)
 
 # How to use
 The tool was tested just in Windows, but should work on every OS where python works.
