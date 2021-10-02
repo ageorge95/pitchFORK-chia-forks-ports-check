@@ -46,16 +46,16 @@ Here is an output example from print_port_conflicts()
 The tool was tested just in Windows, but should work on every OS where python is supported.
 
 ## Usage scenario 1
-DIRECT USAGE - Useful for a quick overview.
-1. Add your fork config.yaml filepaths in "input.json"
+DIRECT USAGE - useful for a quick overview.
+1. Add your forks config.yaml file-paths in "input.json"
 2. Execute RUN_ME.py
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
 ## Usage scenario 1
-INTERFACE WITH OTHER PYTHON SCRIPTS - usefull as a sub-module in your python scripts.
-1. Prepare a list containing the config filepaths.
+INTERFACE WITH OTHER PYTHON SCRIPTS - useful as a sub-module in your python scripts.
+1. Prepare a list containing the config.yaml file-paths.
 2. Directly import the pitchfork() class from _pitchfork.py
-3. Call the "parse_all_cfgs()" methods with the list created at #1
+3. Call the "parse_all_cfgs()" method with the list created at #1
 4. Execute as needed "print_raw_parsed_data()" OR "print_port_conflicts()"
 5. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
