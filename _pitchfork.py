@@ -75,4 +75,4 @@ class pitchfork(pre_checks):
                 table+=list([entry['conflict_pair'],
                               key,
                               entry['conflict_port']] for entry in conflicts[key])
-        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflicCoins', 'ConflictProcess', 'ConflictPort'], tablefmt="grid")))
+        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflictCoins', 'ConflictProcess', 'ConflictPort'], tablefmt="grid")))
