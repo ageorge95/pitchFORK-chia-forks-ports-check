@@ -6,3 +6,4 @@ if __name__ == '__main__':
 
     do = pitchfork()
     do.parse_all_cfgs()
+    do.print_parsed_data()

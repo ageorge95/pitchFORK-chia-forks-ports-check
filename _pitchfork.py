@@ -15,7 +15,13 @@ class pitchfork(pre_checks):
 
         try:
             with open(valid_path, 'r') as yaml_in_handle:
-                to_return = safe_load(yaml_in_handle)
+                to_parse = safe_load(yaml_in_handle)
+                to_return = {'nice_name': to_parse['network_overrides']['config']['mainnet']['address_prefix'],
+                             'daemon': {'port': to_parse['daemon_port']},
+                             'farmer': {'port': to_parse['farmer']['port']},
+                             'full_node': {'port': to_parse['full_node']['port']},
+                             'harvester': {'port': to_parse['harvester']['port']},
+                             'wallet': {'port': to_parse['wallet']['port']}}
                 self._log.info('Successfully parsed {}'.format(valid_path))
                 return to_return
         except:
@@ -29,4 +35,7 @@ class pitchfork(pre_checks):
         self.contents = []
         with ThreadPoolExecutor(10) as exec_pool:
             for valid_path in override_paths:
-                self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)))
+                self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)).result())
+
+    def print_parsed_data(self):
+        print(self.contents)
