@@ -3,7 +3,7 @@ Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
 Sponsored by https://hddcoin.org/ - Check them out 🙂
 
-![alt text](hdd_coin_spinning_logo?raw=true)
+![alt text](https://github.com/ageorge95/pitchFORK-chia-forks-ports-check/blob/main/ReadMe_res/hdd_coin_spinning_logo.gif?raw=true)
 
 - Website: https://hddcoin.org/
 - GitHub: https://github.com/HDDcoin-Network/hddcoin-blockchain
