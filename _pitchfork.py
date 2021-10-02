@@ -50,29 +50,32 @@ class pitchfork(pre_checks):
         self._log.info('Now printing ALL raw data:\n{}'.format(tabulate(table, ['Coin', 'Daemon_port', 'Farmer_port', 'FullNode_port', 'Harvester_port', 'Wallet_port'], tablefmt="grid")))
 
     def print_port_conflicts(self):
-        conflicts = {}
+        conflicts = []
 
-        for key in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
-            conflicts[key] = []
-            generated_subkeys = []
+        ports_with_conflicts = []  # use to filter out duplicate entries
+        for key_1 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+            for key_2 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
 
-            for coin_1 in self.contents:
-                coin1_nicename = coin_1['nice_name']
-                for coin_2 in self.contents:
-                    coin2_nicename = coin_2['nice_name']
-                    if coin1_nicename != coin2_nicename:
-                        if coin_1[key]['port'] == coin_2[key]['port']:
-                            subkey = '{}_{}'.format(coin1_nicename, coin2_nicename)
-                            subkey_reverse = '{}_{}'.format(coin2_nicename, coin1_nicename)
-                            if subkey_reverse not in generated_subkeys:
-                                conflicts[key].append({'conflict_pair': subkey,
-                                                       'conflict_port': coin_1[key]['port']})
-                                generated_subkeys.append(subkey)
+                for coin_1 in self.contents:
+                    coin1_nicename = coin_1['nice_name']
+                    for coin_2 in self.contents:
+                        coin2_nicename = coin_2['nice_name']
+                        if coin1_nicename != coin2_nicename:
+                            if coin_1[key_1]['port'] == coin_2[key_2]['port'] and coin_1[key_1]['port'] not in ports_with_conflicts:
+                                subkey = '{}->{}'.format(coin1_nicename, coin2_nicename)
+                                ports_with_conflicts.append(coin_1[key_1]['port'])
+                                conflicts.append({'conflict_pair': subkey,
+                                                  'conflict_left': key_1,
+                                                  'conflict_right': key_2,
+                                                  'conflict_port_left': coin_1[key_1]['port'],
+                                                  'conflict_port_right': coin_2[key_2]['port']
+                                                  })
 
         table = []
-        for key in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
-            if len(conflicts[key]) > 0:
-                table+=list([entry['conflict_pair'],
-                              key,
-                              entry['conflict_port']] for entry in conflicts[key])
-        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflictCoins', 'ConflictProcess', 'ConflictPort'], tablefmt="grid")))
+        if len(conflicts) > 0:
+            table+=list([entry['conflict_pair'],
+                         entry['conflict_left'],
+                         entry['conflict_right'],
+                         entry['conflict_port_left'],
+                         entry['conflict_port_right']] for entry in conflicts)
+        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflictCoins', 'ConflictProcLeft', 'ConflictProcRight', 'ConflictPortLeft', 'ConflictPortRight'], tablefmt="grid")))
