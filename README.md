@@ -1,27 +1,7 @@
 # pitchFORK-chia-forks-ports-check
 Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
-Sponsored by https://hddcoin.org/ - Check them out 🙂
-
-![alt text](https://github.com/ageorge95/pitchFORK-chia-forks-ports-check/blob/main/ReadMe_res/hdd_coin_spinning_logo.gif?raw=true)
-
-- Website: https://hddcoin.org/
-- GitHub: https://github.com/HDDcoin-Network/hddcoin-blockchain
-- Discord: https://discord.gg/AZdGSFnqAR
-- Twitter: https://twitter.com/hddcoin
-- Coin: HDD
-- Explorer: https://alltheblocks.net/hddcoin
-- Calculator: https://chiaforkscalculator.com/hddcoin
-- HDD DB: https://hddcoin.org/downloads/blockchain_v1_mainnet.sqlite
-- Launched: July 2021
-- Unique Genesis: YES
-- Pre-Farm: 3,500,000 HDD
-- Supply:
-- Block Reward: 2 HDD
-- Blocks Per Day: 4,608, halved every 3 years.
-- GUI: YES, https://github.com/HDDcoin-Network/hddcoin-blockchain/releases
-
-## Other Contributors
+## Contributors
 
 ![alt text](https://c.tenor.com/FDwYMy302gMAAAAM/tumbleweed-silence.gif?raw=true)
 
@@ -60,7 +40,7 @@ INTERFACE WITH OTHER PYTHON SCRIPTS - useful as a sub-module in your python scri
 5. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
 # Support
-Found this project useful? Send your love in any form you can 🙂. Please contact me if you donated and want to be added to the contributors list !
+Found this project useful? Send your ❤ in any form you can 🙂. Please contact me if you donated and want to be added to the contributors list !
 
 - apple APPLE --- apple1tdscevmlwa03rt464mr03tf6qs6y2xm3ay4z9lzn9pshad6jkp2s4crqd9
 - beet XBT --- xbt1kqflshzfhmushajg5hmsrus8rnf2qvh2cstl8wq7tlq2nrdk20msgc4c2g
