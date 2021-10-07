@@ -1,13 +1,18 @@
-from _pre_checks import pre_checks
 from logging import getLogger
 from concurrent.futures import ThreadPoolExecutor
 from yaml import safe_load
 from traceback import format_exc
 from tabulate import tabulate
 
+from pitchFORK._pre_checks import pre_checks
+from pitchFORK._base import configure_logger
+
 class pitchfork(pre_checks):
-    def __init__(self):
+    def __init__(self,
+                 override_paths_list = None):
+        configure_logger()
         self._log = getLogger(type(self).__name__)
+        self.override_paths_list = override_paths_list
 
         super(pitchfork, self).__init__()
 
@@ -33,13 +38,11 @@ class pitchfork(pre_checks):
             self._log.warning('Failed to parse {}'.format(valid_path))
             self._log.debug(format_exc(chain=False))
 
-    def parse_all_cfgs(self,
-                       override_paths: list = None):
-        if not override_paths: override_paths = self.input_paths_checked
+    def parse_all_cfgs(self):
 
         self.contents = []
         with ThreadPoolExecutor(10) as exec_pool:
-            for valid_path in override_paths:
+            for valid_path in self.input_paths_checked:
                 self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)).result())
 
     def print_raw_parsed_data(self):

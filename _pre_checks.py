@@ -1,11 +1,13 @@
 from json import load
-from _base import std_names
 from logging import getLogger
 from os import path
+
+from pitchFORK._base import std_names
 
 class pre_checks():
 
     _log: getLogger
+    override_paths_list: list
 
     def __init__(self):
         super(pre_checks, self).__init__()
@@ -27,12 +29,16 @@ class pre_checks():
 
     def check_input_json_integrity(self):
         to_return = []
-        try:
-            with open('input.json', 'r') as json_in_handle:
-                self.input_raw = load(json_in_handle)
-        except:
-            to_return.append({'test': std_names.FAILED_TEST,
-                              'reason': 'input.json integrity check failed !'})
+        if not self.override_paths_list:
+            try:
+                with open('input.json', 'r') as json_in_handle:
+                    self.input_raw = load(json_in_handle)
+            except:
+                print('exception')
+                to_return.append({'test': std_names.FAILED_TEST,
+                                  'reason': 'input.json integrity check failed !'})
+        else:
+            self.input_raw = 'bypassed'
         return to_return if len(to_return) > 0 else [{'test': std_names.PASSED_TEST,
                                                       'reason': None}]
 
@@ -41,7 +47,7 @@ class pre_checks():
         self.input_paths_checked = []
 
         if self.input_raw:
-            for cfg_filepath in self.input_raw['cfg_paths']:
+            for cfg_filepath in (self.input_raw['cfg_paths'] if not self.override_paths_list else self.override_paths_list):
                 if cfg_filepath not in self.input_paths_checked:
                     if path.isfile(cfg_filepath):
                         self.input_paths_checked.append(cfg_filepath)
