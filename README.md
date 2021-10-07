@@ -34,10 +34,12 @@ DIRECT USAGE - useful for a quick overview.
 ## Usage scenario 2
 INTERFACE WITH OTHER PYTHON SCRIPTS - useful as a sub-module in your python scripts.
 1. Prepare a list containing the config.yaml file-paths.
-2. Directly import the pitchfork() class from _pitchfork.py
-3. Call the "parse_all_cfgs()" method with the list created at #1
-4. Execute as needed "print_raw_parsed_data()" OR "print_port_conflicts()"
-5. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
+2. Add pitchfork as a sub-module in your project, or simply copy all files to a new folder in your project
+3. Add the path of the folder from #2 into the system's path (you can use sys.path.append(<folder_name>))
+4. Directly import the pitchfork() class from _pitchfork.py, from #2
+5. Initialize pitchfork() with the list created at #1
+6. Execute as needed "print_raw_parsed_data()" OR "print_port_conflicts()"
+7. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
 # Support
 Found this project useful? Send your ❤ in any form you can 🙂. Please contact me if you donated and want to be added to the contributors list !
