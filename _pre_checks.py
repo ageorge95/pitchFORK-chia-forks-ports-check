@@ -2,7 +2,7 @@ from json import load
 from logging import getLogger
 from os import path
 
-from pitchFORK._base import std_names
+from _base import std_names
 
 class pre_checks():
 
@@ -30,11 +30,11 @@ class pre_checks():
     def check_input_json_integrity(self):
         to_return = []
         if not self.override_paths_list:
+            current_path = path.dirname(__file__)
             try:
-                with open('input.json', 'r') as json_in_handle:
+                with open(path.join(current_path, 'input.json'), 'r') as json_in_handle:
                     self.input_raw = load(json_in_handle)
             except:
-                print('exception')
                 to_return.append({'test': std_names.FAILED_TEST,
                                   'reason': 'input.json integrity check failed !'})
         else:

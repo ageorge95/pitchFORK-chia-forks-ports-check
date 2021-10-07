@@ -4,8 +4,8 @@ from yaml import safe_load
 from traceback import format_exc
 from tabulate import tabulate
 
-from pitchFORK._pre_checks import pre_checks
-from pitchFORK._base import configure_logger
+from _pre_checks import pre_checks
+from _base import configure_logger
 
 class pitchfork(pre_checks):
     def __init__(self,
