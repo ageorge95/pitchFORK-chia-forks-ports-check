@@ -1,6 +1,8 @@
-from json import load
+from json import load,\
+    dump
 from logging import getLogger
-from os import path
+from os import path,\
+    getcwd
 from sys import exit
 
 from _base import std_names
@@ -31,9 +33,12 @@ class pre_checks():
     def check_input_json_integrity(self):
         to_return = []
         if not self.override_paths_list:
-            current_path = path.dirname(__file__)
+            if not path.isfile(path.join(getcwd(), 'input.json')):
+                with open(path.join(getcwd(), 'input.json'), 'w') as json_out_handle:
+                    dump({"cfg_paths": []}, json_out_handle, indent=2)
+                self._log.info('input.json missing. Was created in {}'.format(path.join(getcwd(), 'input.json')))
             try:
-                with open(path.join(current_path, 'input.json'), 'r') as json_in_handle:
+                with open(path.join(getcwd(), 'input.json'), 'r') as json_in_handle:
                     self.input_raw = load(json_in_handle)
             except:
                 to_return.append({'test': std_names.FAILED_TEST,
