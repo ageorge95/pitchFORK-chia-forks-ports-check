@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 from yaml import safe_load
 from traceback import format_exc
 from tabulate import tabulate
+from os import system
 
 from _pre_checks import pre_checks
 from _base import configure_logger
@@ -13,6 +14,8 @@ class pitchfork(pre_checks):
         configure_logger()
         self._log = getLogger(type(self).__name__)
         self.override_paths_list = override_paths_list
+
+        system("color") # enable colored output in windows cmd
 
         super(pitchfork, self).__init__()
 
