@@ -71,34 +71,28 @@ class pitchfork(pre_checks):
         ports_with_conflicts = []  # use to filter out duplicate entries
         for key_1 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
             for key_2 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+                for variance_1 in ['port', 'rpc_port']:
+                    for variance_2 in ['port', 'rpc_port']:
 
-                for coin_1 in self.contents:
-                    coin1_nicename = coin_1['nice_name']
-                    for coin_2 in self.contents:
-                        coin2_nicename = coin_2['nice_name']
-                        if coin1_nicename != coin2_nicename:
-                            # check ports conflicts
-                            if coin_1[key_1]['port'] == coin_2[key_2]['port'] and coin_1[key_1]['port'] not in ports_with_conflicts:
-                                subkey = '{}->{}'.format(coin1_nicename, coin2_nicename)
-                                ports_with_conflicts.append(coin_1[key_1]['port'])
-                                conflicts.append({'conflict_pair': subkey,
-                                                  'conflict_left': key_1,
-                                                  'conflict_right': key_2,
-                                                  'conflict_port_left': coin_1[key_1]['port'],
-                                                  'conflict_port_right': coin_2[key_2]['port']
-                                                  })
-                            # check rpc_ports conflicts
-                            if 'rpc_port' in coin_1[key_1].keys() and 'rpc_port' in coin_2[key_2].keys():
-                                if coin_1[key_1]['rpc_port'] == coin_2[key_2]['rpc_port'] and coin_1[key_1]['rpc_port'] not in ports_with_conflicts:
+                        for coin_1 in self.contents:
+                            coin1_nicename = coin_1['nice_name']
+                            for coin_2 in self.contents:
+                                coin2_nicename = coin_2['nice_name']
+                                if coin1_nicename != coin2_nicename:
+
                                     subkey = '{}->{}'.format(coin1_nicename, coin2_nicename)
-                                    ports_with_conflicts.append(coin_1[key_1]['rpc_port'])
-                                    conflicts.append({'conflict_pair': subkey,
-                                                      'conflict_left': key_1,
-                                                      'conflict_right': key_2,
-                                                      'conflict_port_left': coin_1[key_1]['rpc_port'],
-                                                      'conflict_port_right': coin_2[key_2]['rpc_port']
-                                                      })
+                                    if variance_1 in coin_1[key_1].keys() and variance_2 in coin_2[key_2].keys():
+                                        port_left = coin_1[key_1][variance_1]
+                                        port_right = coin_2[key_2][variance_2]
 
+                                        if port_left == port_right and port_left not in ports_with_conflicts:
+                                            ports_with_conflicts.append(port_left)
+                                            conflicts.append({'conflict_pair': subkey,
+                                                              'conflict_left': '{}_{}'.format(key_1, variance_1),
+                                                              'conflict_right': '{}_{}'.format(key_2, variance_2),
+                                                              'conflict_port_left': coin_1[key_1][variance_1],
+                                                              'conflict_port_right': coin_2[key_2][variance_2]
+                                                              })
         table = []
         if len(conflicts) > 0:
             table+=list([entry['conflict_pair'],
