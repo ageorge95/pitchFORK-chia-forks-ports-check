@@ -27,7 +27,16 @@ The tool was tested just in Windows, but should work on every OS where python is
 
 ## Usage scenario 1
 DIRECT USAGE - useful for a quick overview.
-1. Add your forks config.yaml file-paths in "input.json"
+1. Add your forks config.yaml file-paths in "input.json"   
+   - By default, "input.json" will come with no paths in it, it is up to the end-user to add new paths.    
+    
+        ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/input_json_default.JPG?raw=true)
+   
+    - When a new paths needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\ instead of \)
+    
+        ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/edited_json.jpg?raw=true)
+    
+    - For editing the json I recommend using PyCharm, it will automatically format the pasted paths to the json required format
 2. Execute RUN_ME.py
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
