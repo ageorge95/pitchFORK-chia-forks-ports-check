@@ -32,7 +32,7 @@ DIRECT USAGE - useful for a quick overview.
     
         ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/input_json_default.JPG?raw=true)
    
-    - When a new paths needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\ instead of \)
+    - When a new paths needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\\\ instead of \\)
     
         ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/edited_json.jpg?raw=true)
     
