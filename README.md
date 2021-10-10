@@ -5,21 +5,19 @@ Sponsored by https://hddcoin.org/ - Check them out 🙂
 
 ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/added_HDDcoin_sponsor/ReadMe_res/hdd_coin_spinning_logo.gif?raw=true)
 
+### BLOCKCHAIN RESOURCES:
 - Website: https://hddcoin.org/
-- GitHub: https://github.com/HDDcoin-Network/hddcoin-blockchain
+- Explorer: https://alltheblocks.net/hddcoin
+- Calculator: https://hddcoinforkscalculator.com/hddcoin
+- HDDcoin DB: https://hddcoin.org/downloads/blockchain_v1_mainnet.sqlite
+
+### COMMUNITIES AND SOCIAL CHANNELS:
 - Discord: https://discord.gg/AZdGSFnqAR
 - Twitter: https://twitter.com/hddcoin
-- Coin: HDD
-- Explorer: https://alltheblocks.net/hddcoin
-- Calculator: https://chiaforkscalculator.com/hddcoin
-- HDD DB: https://hddcoin.org/downloads/blockchain_v1_mainnet.sqlite
-- Launched: July 2021
-- Unique Genesis: YES
-- Pre-Farm: 3,500,000 HDD
-- Supply:
-- Block Reward: 2 HDD
-- Blocks Per Day: 4,608, halved every 3 years.
-- GUI: YES, https://github.com/HDDcoin-Network/hddcoin-blockchain/releases
+- YouTube: https://www.youtube.com/channel/UChJY3YEOTDBvFJ0vLFEc1Sw
+- Facebook: https://www.facebook.com/HDDcoinNetwork
+- Telegram: https://t.me/HDDcoin_Network
+- Reddit: https://www.reddit.com/r/HDDcoinNetwork
 
 ## Other Contributors
 
