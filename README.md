@@ -1,7 +1,25 @@
 # pitchFORK-chia-forks-ports-check
 Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
-## Contributors
+Sponsored by HDDcoin, an eco-friendly decentralization blockchain based on the Proof of Space and Time (PoST) consensus - https://hddcoin.org/ - Check them out 🙂
+
+![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/added_HDDcoin_sponsor/ReadMe_res/hdd_coin_spinning_logo.png?raw=true)
+
+### BLOCKCHAIN RESOURCES:
+- Website: https://hddcoin.org/
+- Explorer: https://alltheblocks.net/hddcoin
+- Calculator: https://hddcoinforkscalculator.com/hddcoin
+- HDDcoin DB: https://hddcoin.org/downloads/blockchain_v1_mainnet.sqlite
+
+### COMMUNITIES AND SOCIAL CHANNELS:
+- Discord: https://discord.gg/AZdGSFnqAR
+- Twitter: https://twitter.com/hddcoin
+- YouTube: https://www.youtube.com/channel/UChJY3YEOTDBvFJ0vLFEc1Sw
+- Facebook: https://www.facebook.com/HDDcoinNetwork
+- Telegram: https://t.me/HDDcoin_Network
+- Reddit: https://www.reddit.com/r/HDDcoinNetwork
+
+## Other Contributors
 
 ![alt text](https://c.tenor.com/FDwYMy302gMAAAAM/tumbleweed-silence.gif?raw=true)
 
