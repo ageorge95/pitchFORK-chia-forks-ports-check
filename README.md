@@ -1,7 +1,27 @@
 # pitchFORK-chia-forks-ports-check
 Tool used to check multiple chia and chia forks cfg files for port conflicts.
 
-## Contributors
+Sponsored by https://hddcoin.org/ - Check them out 🙂
+
+![alt text](https://github.com/ageorge95/pitchFORK-chia-forks-ports-check/blob/main/ReadMe_res/hdd_coin_spinning_logo.gif?raw=true)
+
+- Website: https://hddcoin.org/
+- GitHub: https://github.com/HDDcoin-Network/hddcoin-blockchain
+- Discord: https://discord.gg/AZdGSFnqAR
+- Twitter: https://twitter.com/hddcoin
+- Coin: HDD
+- Explorer: https://alltheblocks.net/hddcoin
+- Calculator: https://chiaforkscalculator.com/hddcoin
+- HDD DB: https://hddcoin.org/downloads/blockchain_v1_mainnet.sqlite
+- Launched: July 2021
+- Unique Genesis: YES
+- Pre-Farm: 3,500,000 HDD
+- Supply:
+- Block Reward: 2 HDD
+- Blocks Per Day: 4,608, halved every 3 years.
+- GUI: YES, https://github.com/HDDcoin-Network/hddcoin-blockchain/releases
+
+## Other Contributors
 
 ![alt text](https://c.tenor.com/FDwYMy302gMAAAAM/tumbleweed-silence.gif?raw=true)
 
