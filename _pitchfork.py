@@ -25,7 +25,8 @@ class pitchfork(pre_checks):
         try:
             with open(valid_path, 'r') as yaml_in_handle:
                 to_parse = safe_load(yaml_in_handle)
-                to_return = {'nice_name': to_parse['network_overrides']['config']['mainnet']['address_prefix'],
+                network = 'mainnet' if 'mainnet' in to_parse['network_overrides']['config'].keys() else list(to_parse['network_overrides']['config'].keys())[0]
+                to_return = {'nice_name': to_parse['network_overrides']['config'][network]['address_prefix'],
                              'daemon': {'port': to_parse['daemon_port']},
                              'farmer': {'port': to_parse['farmer']['port'],
                                         'rpc_port': to_parse['farmer']['rpc_port']},
