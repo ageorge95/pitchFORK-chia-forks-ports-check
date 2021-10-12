@@ -43,6 +43,8 @@ Here is an output example from print_port_conflicts()
 # How to use
 The tool was tested just in Windows, but should work on every OS where python is supported.
 
+If you want fast support (faster than with github issues that is), join our Discord server: https://discord.gg/MrPvdRWJ
+
 ## Usage scenario 1
 DIRECT USAGE - useful for a quick overview.
 1. Add your forks config.yaml file-paths in "input.json"   
