@@ -50,11 +50,15 @@ DIRECT USAGE - useful for a quick overview.
     
         ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/input_json_default.JPG?raw=true)
    
-    - When a new paths needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\\\ instead of \\)
+    - When a new path needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\\\ instead of \\)
     
         ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/edited_json.jpg?raw=true)
     
     - For editing the json I recommend using PyCharm, it will automatically format the pasted paths to the json required format
+
+    **1.1. IMPORTANT: in the new Releases, if input.json is missing from cwd (current working directory, same folder with the scripts), it will be created containing a preselected list of cfg paths**
+    
+    **1.2. If you messed something up in the json, just delete it, and the tool will recreate it for you.**
 2. Execute RUN_ME.py
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
