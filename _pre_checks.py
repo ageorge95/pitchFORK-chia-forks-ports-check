@@ -5,7 +5,8 @@ from os import path,\
     getcwd
 from sys import exit
 
-from _base import std_names
+from _base import std_names,\
+    cfg_paths_template
 
 class pre_checks():
 
@@ -34,8 +35,9 @@ class pre_checks():
         to_return = []
         if not self.override_paths_list:
             if not path.isfile(path.join(getcwd(), 'input.json')):
+                user_home = path.expanduser("~")
                 with open(path.join(getcwd(), 'input.json'), 'w') as json_out_handle:
-                    dump({"cfg_paths": []}, json_out_handle, indent=2)
+                    dump({"cfg_paths": [entry.format(user_home=user_home) for entry in cfg_paths_template]}, json_out_handle, indent=2)
                 self._log.info('input.json missing. Was created in {}'.format(path.join(getcwd(), 'input.json')))
             try:
                 with open(path.join(getcwd(), 'input.json'), 'r') as json_in_handle:
