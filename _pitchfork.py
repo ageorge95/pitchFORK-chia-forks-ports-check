@@ -63,7 +63,7 @@ class pitchfork(pre_checks):
                   entry['wallet']['rpc_port']
                   ] for entry in self.contents]
         self._log.info('Now printing ALL raw data:\n{}'.format(tabulate(table, ['Coin',
-                                                                                'Daemon_port', 'Daemon_rpc_port',
+                                                                                'Daemon_port',
                                                                                 'Farmer_port', 'Farmer_rpc_port',
                                                                                 'FullNode_port', 'FullNode_rpc_port',
                                                                                 'Harvester_port', 'Harvester_rpc_port',
