@@ -45,8 +45,8 @@ The tool was tested just in Windows, but should work on every OS where python is
 
 If you want fast support (faster than with github issues that is), join our Discord server: https://discord.gg/MrPvdRWJ
 
-## Usage scenario 1
-DIRECT USAGE - useful for a quick overview.
+## WINDOWS usage - instructions
+### NOTE: No other prerequisites are needed. It works out of the box. ###
 1. Add your forks config.yaml file-paths in "input.json"   
    - By default, "input.json" will come with no paths in it, it is up to the end-user to add new paths.    
     
@@ -61,11 +61,38 @@ DIRECT USAGE - useful for a quick overview.
     **1.1. IMPORTANT: in the new Releases, if input.json is missing from cwd (current working directory, same folder with the scripts), it will be created containing a preselected list of cfg paths**
     
     **1.2. If you messed something up in the json, just delete it, and the tool will recreate it for you.**
-2. Execute RUN_ME.py
+2. Execute the compiled .exe
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 
-## Usage scenario 2
-INTERFACE WITH OTHER PYTHON SCRIPTS - useful as a sub-module in your python scripts.
+## UBUNTU usage - instructions
+### NOTE: Python 3.x is required ###
+- Clone the repository
+  
+   ```
+   git clone https://github.com/ageorge95/pitchFORK-chia-forks-ports-check  
+   cd pitchFORK-chia-forks-ports-check
+
+- Install the required libraries (NOTE: the libs from requirements.txt may be named different for Ubuntu)
+  
+   ```
+   sudo apt-get install python3-yaml  
+   pip install tabulate
+
+- Add paths th the config.yaml files using `nano input.json`
+
+   - Note: use the following format     
+   ```
+   "/home/user/.forkname/mainnet/config/config.yaml",
+   "/home/user/.forkname/mainnet/config/config.yaml",
+   "/home/user/.forkname/mainnet/config/config.yaml",
+   "/home/user/.forkname/mainnet/config/config.yaml" 
+
+- Run the program: `python3 RUN_ME.py`
+
+- Enjoy 🙂
+
+## SUB-MODULE usage - instructions
+### NOTE: Python 3.x is required ###
 1. Prepare a list containing the config.yaml file-paths.
 2. Add pitchfork as a sub-module in your project, or simply copy all files to a new folder in your project
 3. Add the path of the folder from #2 into the system's path (you can use sys.path.append(<folder_name>))
