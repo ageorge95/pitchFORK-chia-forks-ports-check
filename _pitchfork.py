@@ -48,6 +48,8 @@ class pitchfork(pre_checks):
         with ThreadPoolExecutor(10) as exec_pool:
             for valid_path in self.input_paths_checked:
                 self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)).result())
+            # remove contents for yaml files which have failed to be parsed
+            self.contents = list(filter(lambda entry:entry != None, self.contents))
 
     def print_raw_parsed_data(self):
         table = [[
