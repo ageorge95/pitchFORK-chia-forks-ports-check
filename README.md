@@ -43,7 +43,7 @@ Here is an output example from print_port_conflicts()
 # How to use
 The tool was tested just in Windows, but should work on every OS where python is supported.
 
-If you want fast support (faster than with github issues that is), join our Discord server: https://discord.gg/MrPvdRWJ
+If you want fast support (faster than with github issues that is), join our Discord server: https://discord.gg/ycZtMbWPax
 
 ## WINDOWS usage - instructions
 ### NOTE: No other prerequisites are needed. It works out of the box. ###
