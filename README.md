@@ -150,6 +150,6 @@ Found this project useful? Send your ❤ in any form you can 🙂. Please contac
 - lotus LCH---lch1yxmdv2jykwsvmwemka3uc2g3zg7dqfaevd8n2z2jht9nstsammtsyla2ex
 - melon MELON---melon1uhrg7a43r0hv5n7k2tq9tsgq5adwc4fvjy7xfdjwqwz58vq2f24szftdfc
 - kujenga XKJ---xkj14yyasecl9cygeu25ptx5562ulqj47pzkwsxrcdt20kdwhqkm0rjqvfedah
-- aedge AEC---aec16r8mda3kxj58y0zsx8yv4vz3prtdzqadm93w56077thhhcqapdsqcgz67n
+- aedge AEC---aec148wa08dgfdwuxrpq9sw0rylgnxlfllr9z2d7xsm6qatn5hfvmpfshu2nt6
 - Venidium XVM---xvm1h35hgaqxyvrgjmmr2qgr48ft0cxltyhnge6zkwkfsl9x93d4uq2qq9la0k
 - Silicoin SIT---sit1lms7kfdzgetw0tnk04hqh0jwy2g3geju5xypkw53fgafw8aumqzqchs05n
