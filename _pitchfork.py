@@ -3,7 +3,10 @@ from concurrent.futures import ThreadPoolExecutor
 from yaml import safe_load
 from traceback import format_exc
 from tabulate import tabulate
-from os import system
+from os import system,\
+    path
+from shutil import copyfile
+from datetime import datetime
 
 from _pre_checks import pre_checks
 from _base import configure_logger
@@ -144,6 +147,11 @@ class pitchfork(pre_checks):
 
                     self._log.info('Decided to use the free port: {}'.format(new_port))
 
+                    # make a backup
+                    copyfile(conflict['config_path_left'],
+                             path.join(path.dirname(conflict['config_path_left']), '{}_'.format(str(datetime.now()).replace(':', '_'))+path.basename(conflict['config_path_left'])))
+
+                    # edit the cfg
                     with open(conflict['config_path_left'], 'r') as raw_file_in:
                         to_write = [line.replace(str(conflict['conflict_port_left']), str(new_port)) for line in raw_file_in.readlines()]
 
