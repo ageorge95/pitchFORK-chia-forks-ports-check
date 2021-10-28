@@ -10,3 +10,4 @@ if __name__ == '__main__':
     do.parse_all_cfgs()
     do.print_raw_parsed_data()
     do.print_port_conflicts()
+    do.attempt_auto_fix()

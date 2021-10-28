@@ -35,7 +35,8 @@ class pitchfork(pre_checks):
                              'harvester': {'port': to_parse['harvester']['port'],
                                            'rpc_port': to_parse['harvester']['rpc_port']},
                              'wallet': {'port': to_parse['wallet']['port'],
-                                        'rpc_port': to_parse['wallet']['rpc_port']}}
+                                        'rpc_port': to_parse['wallet']['rpc_port']},
+                             'config_path': valid_path}
                 self._log.info('Successfully parsed {}'.format(valid_path))
                 return to_return
         except:
@@ -44,12 +45,43 @@ class pitchfork(pre_checks):
 
     def parse_all_cfgs(self):
 
+        # parse the raw cfg
         self.contents = []
         with ThreadPoolExecutor(10) as exec_pool:
             for valid_path in self.input_paths_checked:
                 self.contents.append(exec_pool.submit(self.parse_cfg_slave,(valid_path)).result())
             # remove contents for yaml files which have failed to be parsed
             self.contents = list(filter(lambda entry:entry != None, self.contents))
+
+        # scan for port conlicts between the cfgs
+        self.conflicts = []
+
+        ports_with_conflicts = []  # use to filter out duplicate entries
+        for key_1 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+            for key_2 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
+                for variance_1 in ['port', 'rpc_port']:
+                    for variance_2 in ['port', 'rpc_port']:
+
+                        for coin_1 in self.contents:
+                            coin1_nicename = coin_1['nice_name']
+                            for coin_2 in self.contents:
+                                coin2_nicename = coin_2['nice_name']
+                                if coin1_nicename != coin2_nicename:
+
+                                    subkey = '{}->{}'.format(coin1_nicename, coin2_nicename)
+                                    if variance_1 in coin_1[key_1].keys() and variance_2 in coin_2[key_2].keys():
+                                        port_left = coin_1[key_1][variance_1]
+                                        port_right = coin_2[key_2][variance_2]
+
+                                        if port_left == port_right and port_left not in ports_with_conflicts:
+                                            ports_with_conflicts.append(port_left)
+                                            self.conflicts.append({'conflict_pair': subkey,
+                                                                  'conflict_left': '{}_{}'.format(key_1, variance_1),
+                                                                  'conflict_right': '{}_{}'.format(key_2, variance_2),
+                                                                  'conflict_port_left': coin_1[key_1][variance_1],
+                                                                  'conflict_port_right': coin_2[key_2][variance_2],
+                                                                  'config_path_left': coin_1['config_path'],
+                                                                  'config_path_right': coin_2['config_path']})
 
     def print_raw_parsed_data(self):
         table = [[
@@ -72,38 +104,56 @@ class pitchfork(pre_checks):
                                                                                 'Wallet_port', 'Wallet_rpc_port'], tablefmt="grid")))
 
     def print_port_conflicts(self):
-        conflicts = []
-
-        ports_with_conflicts = []  # use to filter out duplicate entries
-        for key_1 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
-            for key_2 in ['daemon', 'farmer', 'full_node', 'harvester', 'wallet']:
-                for variance_1 in ['port', 'rpc_port']:
-                    for variance_2 in ['port', 'rpc_port']:
-
-                        for coin_1 in self.contents:
-                            coin1_nicename = coin_1['nice_name']
-                            for coin_2 in self.contents:
-                                coin2_nicename = coin_2['nice_name']
-                                if coin1_nicename != coin2_nicename:
-
-                                    subkey = '{}->{}'.format(coin1_nicename, coin2_nicename)
-                                    if variance_1 in coin_1[key_1].keys() and variance_2 in coin_2[key_2].keys():
-                                        port_left = coin_1[key_1][variance_1]
-                                        port_right = coin_2[key_2][variance_2]
-
-                                        if port_left == port_right and port_left not in ports_with_conflicts:
-                                            ports_with_conflicts.append(port_left)
-                                            conflicts.append({'conflict_pair': subkey,
-                                                              'conflict_left': '{}_{}'.format(key_1, variance_1),
-                                                              'conflict_right': '{}_{}'.format(key_2, variance_2),
-                                                              'conflict_port_left': coin_1[key_1][variance_1],
-                                                              'conflict_port_right': coin_2[key_2][variance_2]
-                                                              })
         table = []
-        if len(conflicts) > 0:
+        if len(self.conflicts) > 0:
             table+=list([entry['conflict_pair'],
                          entry['conflict_left'],
                          entry['conflict_right'],
                          entry['conflict_port_left'],
-                         entry['conflict_port_right']] for entry in conflicts)
-        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflictCoins', 'ConflictProcLeft', 'ConflictProcRight', 'ConflictPortLeft', 'ConflictPortRight'], tablefmt="grid")))
+                         entry['conflict_port_right']] for entry in self.conflicts)
+        self._log.info('Now printing PORT CONFLICTS:\n{}'.format(tabulate(table, ['ConflictCoins',
+                                                                                  'ConflictProcLeft',
+                                                                                  'ConflictProcRight',
+                                                                                  'ConflictPortLeft',
+                                                                                  'ConflictPortRight'], tablefmt="grid")))
+    def attempt_auto_fix(self,
+                         override_confirmation = False):
+        if len(self.conflicts) > 0:
+            if (not override_confirmation and input('Do you want to attempt auto-ports-fix [Y/*]?').lower() == 'y') or override_confirmation:
+                self._log.info('Auto-fix attempt in progress (left conflict will be resolved by default) ...')
+                all_used_ports = [[
+                                  entry['daemon']['port'],
+                                  entry['farmer']['port'],
+                                  entry['farmer']['rpc_port'],
+                                  entry['full_node']['port'],
+                                  entry['full_node']['rpc_port'],
+                                  entry['harvester']['port'],
+                                  entry['harvester']['rpc_port'],
+                                  entry['wallet']['port'],
+                                  entry['wallet']['rpc_port']
+                                  ] for entry in self.contents]
+                for conflict in self.conflicts:
+                    self._log.info('Analyzing conflict: {} | {}->{} | {}'.format(conflict['conflict_pair'],
+                                                                                conflict['conflict_left'],
+                                                                                conflict['conflict_right'],
+                                                                                conflict['conflict_port_left']))
+                    new_port = conflict['conflict_port_left'] + 2
+                    while new_port in all_used_ports:
+                        new_port += 2
+                    all_used_ports.append(new_port)
+
+                    self._log.info('Decided to use the free port: {}'.format(new_port))
+
+                    with open(conflict['config_path_left'], 'r') as raw_file_in:
+                        to_write = [line.replace(str(conflict['conflict_port_left']), str(new_port)) for line in raw_file_in.readlines()]
+
+                    with open(conflict['config_path_left'], 'w') as raw_file_out:
+                        raw_file_out.writelines(to_write)
+
+                    self._log.info('Successfully resolved the conflict for {} | {}->{} | {}.'.format(conflict['conflict_pair'],
+                                                                                                    conflict['conflict_left'],
+                                                                                                    conflict['conflict_right'],
+                                                                                                    conflict['conflict_port_left']))
+                self._log.info('Please run the tool again to double check that the operation was successfull.')
+            else:
+                self._log.info('Auto-fix attempt aborted.')

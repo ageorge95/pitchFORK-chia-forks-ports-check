@@ -26,6 +26,8 @@ Sponsored by HDDcoin, an eco-friendly decentralization blockchain based on the P
 # High level overview
 The tool will parse the configured yaml config files and then scan the data for possible port conflicts.
 
+Afterwards, if conflicts are found, the user will be prompted to allow the auto-fix feature to run.
+
 # Feedback/ Contribution
 - Please post any issues you encountered or any feature requests in the issues tab.
 - Also, feel free to contribute to the tool's development with a PR.
@@ -39,6 +41,10 @@ Here is an output example from print_raw_parsed_data()
 Here is an output example from print_port_conflicts()
 
 ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/print_port_conflicts_snapshot.JPG?raw=true)
+
+Here is an output example from attempt_auto_fix()
+
+![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/attempt_auto_fix_ex.JPG?raw=true)
 
 # How to use
 The tool was tested just in Windows, but should work on every OS where python is supported.
@@ -63,6 +69,7 @@ If you want fast support (faster than with github issues that is), join our Disc
     **1.2. If you messed something up in the json, just delete it, and the tool will recreate it for you.**
 2. Execute the compiled .exe
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
+4. Allow or not the auto-fix attempt to be executed
 
 ## UBUNTU usage - instructions
 ### NOTE: Python 3.x is required ###
@@ -100,6 +107,7 @@ If you want fast support (faster than with github issues that is), join our Disc
 5. Initialize pitchfork() with the list created at #1
 6. Execute as needed "print_raw_parsed_data()" OR "print_port_conflicts()"
 7. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
+8. Execute attempt_auto_fix() to automatically fix the port conflicts
 
 # Support
 Found this project useful? Send your ❤ in any form you can 🙂. Please contact me if you donated and want to be added to the contributors list !
