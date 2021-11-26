@@ -53,20 +53,14 @@ If you want fast support (faster than with github issues that is), join our Disc
 
 ## WINDOWS usage - instructions
 ### NOTE: No other prerequisites are needed. It works out of the box. ###
-1. Add your forks config.yaml file-paths in "input.json"   
-   - By default, "input.json" will come with no paths in it, it is up to the end-user to add new paths.    
-    
-        ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/input_json_default.JPG?raw=true)
-   
-    - When a new path needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\\\ instead of \\)
+1. [OPTIONAL] Add your forks config.yaml file-paths in "input.json"   
+   - **By default, "input.json" will be auto-generated with a default list of forks, if the file is missing from the execution's root dir.**   
+   - When a new path needs to be added there, it is simply done by adding the path within "", while respecting the json writing paradigm (\\\\ instead of \\)
     
         ![alt text](https://raw.githubusercontent.com/ageorge95/pitchFORK-chia-forks-ports-check/main/ReadMe_res/edited_json.jpg?raw=true)
     
     - For editing the json I recommend using PyCharm, it will automatically format the pasted paths to the json required format
-
-    **1.1. IMPORTANT: in the new Releases, if input.json is missing from cwd (current working directory, same folder with the scripts), it will be created containing a preselected list of cfg paths**
-    
-    **1.2. If you messed something up in the json, just delete it, and the tool will recreate it for you.**
+    - If you messed something up in the json, just delete it, and the tool will recreate it for you.
 2. Execute the compiled .exe
 3. See the scanned data and possible conflicts on your screen and in "runtime_log.log"
 4. Allow or not the auto-fix attempt to be executed
