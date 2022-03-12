@@ -5,15 +5,26 @@ from logging import basicConfig,\
 from sys import stdout
 
 cfg_paths_template = [
+                    r'{user_home}\.gold\mainnet\config\config.yaml',
+                    r'{user_home}\.joker\mainnet\config\config.yaml',
+                    r'{user_home}\.littlelambocoin\mainnet\config\config.yaml',
+                    r'{user_home}\.bpx\mainnet\config\config.yaml',
+                    r'{user_home}\.sit\mainnet\config\config.yaml',
+                    r'{user_home}\.rolls\mainnet\config\config.yaml',
+                    r'{user_home}\.ethgreen\mainnet\config\config.yaml',
+                    r'{user_home}\.skynet\mainnet\config\config.yaml',
+                    r'{user_home}\.venidium\mainnet\config\config.yaml',
+                    r'{user_home}\.aedge\mainnet\config\config.yaml',
                     r'{user_home}\.chaingreen\mainnet\config\config.yaml',
                     r'{user_home}\.peas\mainnet\config\config.yaml',
                     r'{user_home}\.kujenga\mainnet\config\config.yaml',
                     r'{user_home}\.melon\mainnet\config\config.yaml',
-                    r'{user_home}\.staicoin\mainnet\config\config.yaml',
+                    r'{user_home}\.stai\mainnet\config\config.yaml',
                     r'{user_home}\.tranzact\mainnet\config\config.yaml',
                     r'{user_home}\.mogua\mainnet\config\config.yaml',
                     r'{user_home}\.mint\mainnet\config\config.yaml',
                     r'{user_home}\.salvia\mainnet\config\config.yaml',
+                    r'{user_home}\.shibgreen\mainnet\config\config.yaml',
                     r'{user_home}\.olive\mainnet\config\config.yaml',
                     r'{user_home}\.btcgreen\mainnet\config\config.yaml',
                     r'{user_home}\.lucky\mainnet\config\config.yaml',
@@ -44,14 +55,13 @@ cfg_paths_template = [
                     r'{user_home}\.hddcoin\mainnet\config\config.yaml',
                     r'{user_home}\.dogechia\mainnet\config\config.yaml',
                     r'{user_home}\.beernetwork\mainnet\config\config.yaml',
-                    r'{user_home}\.silicoin\mainnet\config\config.yaml',
                     r'{user_home}\.pipscoin\mainnet\config\config.yaml',
                     r'{user_home}\.scam\mainnet\config\config.yaml',
                     r'{user_home}\.beet\mainnet\config\config.yaml',
                     r'{user_home}\.goldcoin\mainnet\config\config.yaml',
                     r'{user_home}\.kiwi\mainnet\config\config.yaml',
                     r'{user_home}\.xcha\mainnet\config\config.yaml',
-                    r'{user_home}\.stor\mainnet\config\config.yaml',
+                    r'{user_home}\.stor\mainnet\config\config.yaml'
                     ]
 
 class std_names():
